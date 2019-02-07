@@ -16,6 +16,10 @@ The software is designed to run on a [Raspberry Pi](www.raspberrypi.org) and sup
 * Logging of all garage door activity
 * Live display from Foscam IP cameras
 
+
+![iOS Garage Door Opener Foscam][6]
+![iOS Garage Door Opener Control][7]
+
 Requirements:
 -------------
 
@@ -138,7 +142,6 @@ Software Installation:
     `npm start && npm run sim`
     
 
-Image Links:
 -----------
 
   [1]: http://i.imgur.com/rDx9YIt.png
@@ -146,4 +149,6 @@ Image Links:
   [3]: http://i.imgur.com/vPHx7kF.png
   [4]: http://i.imgur.com/AkNl6FI.jpg
   [5]: http://i.imgur.com/48bpyG0.png
+  [6]: http://i.imgur.com/SfGA2Hz.jpg
+  [7]: http://i.imgur.com/lA2rG6s.png
   
