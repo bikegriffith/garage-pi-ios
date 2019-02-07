@@ -1,0 +1,9 @@
+--- etc-rc.local	2019-01-29 21:15:04.343451439 -0500
++++ /etc/rc.local	2019-01-06 21:03:38.697376581 -0500
+@@ -17,4 +17,6 @@
+   printf "My IP address is %s\n" "$_IP"
+ fi
+ 
++(cd ~pi/garage-door-controller; python controller.py)&
++
+ exit 0

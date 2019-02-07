@@ -1,0 +1,54 @@
+  upstream pi {
+    server 127.0.0.1:80;
+    keepalive 64;
+  }
+  upstream foscam1 {
+    server 192.168.1.20:80;
+    keepalive 30;
+  }
+  upstream foscam2 {
+    server 192.168.1.21:80;
+    keepalive 30;
+  }
+
+  server {
+    listen *:1007;
+    server_name _;
+    access_log /var/log/nginx/nginx.access.log;
+    error_log /var/log/nginx/nginx.error.log;
+
+    auth_basic "Restricted Area";
+    auth_basic_user_file /etc/nginx/.htpasswd;
+
+    location / {
+      proxy_pass http://pi;
+    }
+    location /cam1.jpg {
+      proxy_pass http://foscam1/snapshot.cgi?user=admin&pwd=&;
+      proxy_hide_header Authorization;
+    }
+    location /cam1.stream {
+      proxy_pass http://foscam1/stream.cgi?user=admin&pwd=&;
+      proxy_hide_header Authorization;
+    }
+    location /cam1.control {
+      proxy_pass http://foscam1/decoder_control.cgi?user=admin&pwd=&$args;
+      proxy_hide_header Authorization;
+    }
+    location /cam2.jpg {
+      proxy_pass http://foscam2/snapshot.cgi?user=admin&pwd=&;
+      proxy_hide_header Authorization;
+    }
+    location /cam2.stream {
+      proxy_pass http://foscam2/stream.cgi?user=admin&pwd=&;
+      proxy_hide_header Authorization;
+    }
+    location /cam2.control {
+      proxy_pass http://foscam2/decoder_control.cgi?user=admin&pwd=&$args;
+      proxy_hide_header Authorization;
+    }
+    location /img/apple-touch-icon.png {
+      auth_basic "off";
+      proxy_pass http://pi;
+    }
+  }
