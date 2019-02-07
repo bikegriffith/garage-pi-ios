@@ -15,6 +15,7 @@ The software is designed to run on a [Raspberry Pi](www.raspberrypi.org) and sup
 * Remote control of the garage doors
 * Logging of all garage door activity
 * Live display from Foscam IP cameras
+* Remote PTZ control of Foscam IP camera through iOS app
 
 <img src="http://i.imgur.com/lA2rG6s.png" alt="iOS Garage Door Opener Control" width="150">
 <img src="http://i.imgur.com/SfGA2Hz.jpg" alt="iOS Garage Door Opener Foscam" width="150">
