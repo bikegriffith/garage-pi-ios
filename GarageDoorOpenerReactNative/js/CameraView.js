@@ -24,22 +24,29 @@ export default class CameraView extends Component {
   constructor(props) {
     super(props);
     this.foscam = new Foscam(props.id);
-    this.state = {counter: 0, progress: null};
+    this.state = {counter: 0, progress: null, focusChange: 0};
     this.loadedOnce = false;
   }
+
   componentDidMount() {
     this.setState({counter: 1});
+
+    this.props.navigation.addListener('focus', () => {
+      this.setState({focusChange: this.state.focusChange + 1});
+    });
   }
+
   componentWillUnmount() {
     clearTimeout(this.handle);
   }
+
   render() {
-    if (globalState.currentTab != this.props.id) {
+    if (!this.props.navigation.isFocused()) {
       this.loadedOnce = false;
       if (this.state.progress) {
         setTimeout(() => this.setState({progress: 0}), 0);
       }
-      return <View />
+      return <View />;
     }
     var { progress } = this.state;
     if (this.loadedOnce) {

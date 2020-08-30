@@ -7,33 +7,31 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
+import globalState from './state';
 
-export default class HomeView extends Component {
-  render() {
-    const { status, door, onToggleDoor } = this.props;
-    return (
-      <View style={styles.container}>
-        <View style={{marginBottom: 80, width:'100%'}}>
-          <StatusLabel status={status} />
-        </View>
-        {status == 'connected' ? (
-            <View>
-              <View style={{flexDirection: 'row'}}>
-                {false ? <Icon name={door.state == 'closed' ? 'lock' : 'unlock'} size={25} style={{color:'#ccc', marginRight:15}} /> : null}
-                <Text style={styles.heading}>The garage is {door.state}</Text>
-              </View>
-              <View style={{alignItems: 'center'}}>
-                <TouchableOpacity onPress={onToggleDoor} style={{marginBottom:80}}>
-                  <View style={styles.button}>
-                    <Text style={styles.buttonText}>⇧  Toggle  ⇩</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            </View>
-          ) : null}
+export default function HomeView({ navigation, status, door, onToggleDoor }) {
+  return (
+    <View style={styles.container}>
+      <View style={{marginBottom: 80, width:'100%'}}>
+        <StatusLabel status={status} />
       </View>
-    );
-  }
+      {status == 'connected' ? (
+          <View>
+            <View style={{flexDirection: 'row'}}>
+              {false ? <Icon name={door.state == 'closed' ? 'lock' : 'unlock'} size={25} style={{color:'#ccc', marginRight:15}} /> : null}
+              <Text style={styles.heading}>The garage is {door.state}</Text>
+            </View>
+            <View style={{alignItems: 'center'}}>
+              <TouchableOpacity onPress={onToggleDoor} style={{marginBottom:80}}>
+                <View style={styles.button}>
+                  <Text style={styles.buttonText}>⇧  Toggle  ⇩</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+        ) : null}
+    </View>
+  );
 }
 
 function StatusLabel(props) {
